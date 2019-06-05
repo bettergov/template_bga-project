@@ -31,6 +31,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js'
+    // publicPath: '/'
   },
   module: {
     rules: [
@@ -52,9 +53,10 @@ module.exports = {
            * MiniCssExtractPlugin doesn't support HMR.
            * For developing, use 'style-loader' instead.
            * */
-          prod ? MiniCssExtractPlugin.loader : 'style-loader',
-          'postcss-loader',
-          'sass-loader'
+          prod ? MiniCssExtractPlugin.loader : 'style-loader?sourceMap',
+          'css-loader?importLoaders,sourceMap',
+          'postcss-loader?sourceMap',
+          'sass-loader?sourceMap'
         ]
       }
     ]
@@ -75,5 +77,5 @@ module.exports = {
       configure: env
     })
   ],
-  devtool: prod ? false : 'source-map'
+  devtool: prod ? false : 'inline-cheap-source-map'
 };
