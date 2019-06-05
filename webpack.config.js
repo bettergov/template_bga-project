@@ -25,7 +25,7 @@ module.exports = {
     bundle: path.resolve(__dirname, 'src/js/main.js')
   },
   resolve: {
-    extensions: ['*', '.js', '.svelte']
+    extensions: ['*', '.mjs', '.js', '.svelte']
   },
   output: {
     path: path.resolve(__dirname, 'public'),

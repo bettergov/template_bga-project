@@ -6,7 +6,7 @@
     "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
-    "bga-style": "git+ssh://git@github.com:bettergov/bga-style.git",
+    "bga-style": "git+https://github.com/bettergov/bga-style.git",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "html-loader": "^0.5.5",
@@ -14,6 +14,7 @@
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
+    "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0",
     "nunjucks-webpack-plugin": "^5.0.0",
     "postcss-loader": "^3.0.0",
@@ -29,6 +30,6 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --content-base public"
+    "dev": "nodemon --watch webpack.config.js --exec 'webpack-dev-server --content-base public'"
   }
 }

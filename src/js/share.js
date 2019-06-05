@@ -4,9 +4,22 @@ var $ = (selector, d = document) =>
   Array.prototype.slice.call(d.querySelectorAll(selector));
 $.one = (s, d = document) => d.querySelector(s);
 
+//shim for IE
+var matches = document.body.matchesSelector ? 'matchesSelector' : 'matches';
+
+var closest = function(element, selector, root = document) {
+  //walk up the tree until we match or run out of elements
+  while (!element[matches](selector) && element) {
+    element = element.parentElement;
+  }
+  //if we hit the root, that's not a match
+  if (element == root) return null;
+  return element;
+};
+
 /* Share modal */
 const shareListener = e => {
-  const $button = e.target;
+  const $button = closest(e.target, 'button');
   const $menu = $button.parentElement.querySelector('.share-menu');
   $menu.classList.toggle('active');
 };
@@ -45,7 +58,7 @@ const shareEmail = e => {
   const uri = encodeURIComponent(window.location.href);
   const href = `mailto:?subject=${document.title}, by ${window.siteName}&body=${
     window.tweetText
-  }} Read: ${uri}`;
+  } Read: ${uri}`;
   window.open(href);
 };
 
