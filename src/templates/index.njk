@@ -8,7 +8,7 @@
   <title>{{META.page_name}}</title>
   {%include "meta/_social.njk"%}
 
-  <link rel='stylesheet' href='global.css'>
+  {# <link rel='stylesheet' href='global.css'> #}
 
   {% if env == 'production' %}
   <link rel='stylesheet' href='bundle.css'>
@@ -24,9 +24,7 @@
   <article class="main">
     {% include "partials/_header.njk" %}
 
-    <div id="app">
     {% include "partials/_story.njk" %}
-    </div>
 
     {% include "partials/_credits.njk" %}
   </article>
