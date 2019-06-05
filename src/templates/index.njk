@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8">
+  <title>{{META.page_name}}</title>
+  {%include "meta/_social.njk"%}
+
+  <link rel='stylesheet' href='global.css'>
+
+  {% if env == 'production' %}
+  <link rel='stylesheet' href='bundle.css'>
+  {% endif %}
+
+  <link rel="stylesheet" type="text/css" href="https://media.bettergov.org/bga-fontello-icons/css/bga-icons.css">
+
+</head>
+
+<body>
+  {% include "partials/_nav.njk" %}
+
+  <article class="main">
+    {% include "partials/_header.njk" %}
+
+    <div id="app">
+    {% include "partials/_story.njk" %}
+    </div>
+
+    {% include "partials/_credits.njk" %}
+  </article>
+
+
+  {% include "partials/_footer.njk" %}
+  <script type="text/javascript">
+    window.tweetText = "{{META.share.twitter.share_tweet}}";
+    window.siteTwitter = "{{ META.share.twitter.author | replace('@', '') }}";
+    window.siteName = "{{ META.site_name }}";
+  </script>
+</body>
+
+</html>
+
+
+
+{% block js %}
+<script src="bundle.js"></script>
+{# <script type="text/javascript" src="js/main-svelte.bundle.js"></script> #}
+{# <script type="text/javascript" src="js/main-app.bundle.js"></script> #}
+{# <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script> #}
+{% endblock %}

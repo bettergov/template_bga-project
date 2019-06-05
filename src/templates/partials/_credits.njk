@@ -1,0 +1,16 @@
+{% from "_macros.njk" import build_content %}
+
+<section class="credits full-width">
+  <div class="credits__inner fit-inner">
+    <div class="methodology">
+    {{ build_content(ARCHIE.footer.methodology) }}
+    </div>
+    <ul class="list-unstyled">
+      {% for row in ARCHIE.footer.credits %}
+      <li>
+      <b>{{ row.role }}:</b> {{ row.names | safe }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

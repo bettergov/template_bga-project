@@ -1,0 +1,30 @@
+{% from "_macros.njk" import jpg %}
+
+<section class="intro">
+
+  <header class="header--top header--center header--drop-mobile">
+    
+    <div class="lede-copy">
+      <h1 class="hed">
+        {{ ARCHIE.top.headline }}
+      </h1>
+      <summary class="dek">
+        {{ ARCHIE.top.deck }}
+      </summary>
+      <div class="bylines">
+        {{ ARCHIE.top.byline | safe }}
+      </div>
+    </div>
+  
+  </header>
+
+  <hr>
+  
+  <div class="info">
+    <p>
+      <span class="timestamp">
+        <time datetime="{{ARCHIE.top.timestamp}}">{{ARCHIE.top.date}}</time>
+      </span>
+    </p>
+  </div>
+</section>

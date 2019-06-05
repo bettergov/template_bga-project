@@ -1,0 +1,31 @@
+{% from "_macros.njk" import build_content %}
+
+<section class="rail">
+STICKY SEARCH AND FILTERS
+</section>
+
+<section class="story">
+{% set currentDate = 0 %}
+
+{% for event in ARCHIE.events %}
+  {% set eventDescription = event.Description | default(event.Description) %}
+  {% set eventDate = event.Date | default(event.date) %}
+  {% set eventTags = event.Tags | default(event.tags) %}
+
+  {% if eventDate != currentDate %}
+    {% set currentDate = eventDate %}
+    <h2>{{ currentDate }}</h2>
+  {% endif %}
+
+  <div class="card event">
+
+    {{ eventDescription | markdown | safe }}
+
+    {% for tag in eventTags %}
+      <span class="tag">{{ tag.value }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+{{ build_content(ARCHIE.story) }}
+</section>
