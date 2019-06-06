@@ -6,10 +6,10 @@
 
 ## About
 
-| Title       | a                                                                                                                   |
+| Title       | Test project                                                                                                                   |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                               |
-| Link        | [https://projects.bettergov.org/a/](https://projects.bettergov.org/a/)                          |
+| Link        | [https://projects.bettergov.org/2019/test-project/](https://projects.bettergov.org/2019/test-project/)                          |
 | Archie doc  | n/a           |
 | Spreadsheet | n/a |
 
