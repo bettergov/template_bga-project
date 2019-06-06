@@ -1,5 +1,25 @@
 var path = require('path');
 
+// https://medium.com/@mhagemann/the-ultimate-way-to-slugify-a-url-string-in-javascript-b8e4a0d849e1
+function slugify(string) {
+  const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœøṕŕßśșțùúüûǘẃẍÿź·/_,:;';
+  const b = 'aaaaaaaaceeeeghiiiimnnnooooooprssstuuuuuwxyz------';
+  const p = new RegExp(a.split('').join('|'), 'g');
+
+  return string
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+    .replace(/&/g, '-and-') // Replace & with ‘and’
+    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
+}
+
+const year = new Date().getFullYear();
+
 module.exports = {
   name: 'BGA Project',
   renderer: 'ejs',
@@ -12,8 +32,17 @@ module.exports = {
     },
     {
       type: 'input',
+      name: 'projectSlug',
+      message: 'Project slug: ',
+      default: answers => slugify(answers.projectTitle),
+      validate: str => RegExp('^[a-z0-9]+(?:-[a-z0-9]+)*$').test(str)
+    },
+    {
+      type: 'input',
       name: 'projectUrlPath',
-      message: 'URL path (e.g. 2018/recycling-chicago): '
+      message: 'URL path (e.g. 2018/recycling-chicago): ',
+      default: answers => `${year}/${answers.projectSlug}`,
+      validate: str => RegExp('(/[0-9].*?|$)').test(str)
     },
     {
       type: 'confirm',
@@ -42,8 +71,7 @@ module.exports = {
   ],
   statics: {
     absPath: __dirname,
-    projectSlug: path.basename(__dirname),
-    year: new Date().getFullYear()
+    year
   },
   ignore: ['.gitignore', 'README.md', 'example', 'example-context.json'],
   justCopy: [],
