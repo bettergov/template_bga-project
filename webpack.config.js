@@ -1,26 +1,11 @@
 const path = require('path');
-const NunjucksWebpackPlugin = require('nunjucks-webpack-plugin');
+const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const nunjucks = require('nunjucks');
-const nunjucksSettings = require('./nunjucks-settings');
-const nunjucksContext = require('./nunjucks-context');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
-const env = nunjucks.configure('./src/templates/', {
-  autoescape: true,
-  watch: true
-});
-env.addFilter('markdown', nunjucksSettings.markdownFilter);
-env.addGlobal('getArtClasses', nunjucksSettings.getArtClasses);
-env.addFilter('attribute', nunjucksSettings.attrFilter);
-env.addFilter('type', nunjucksSettings.typeFilter);
-env.addGlobal('getArtFromData', nunjucksSettings.getArtFromData);
-
-const ctx = nunjucksContext.getContext();
-
-module.exports = {
+let webpackConfig = {
   entry: {
     bundle: path.resolve(__dirname, 'src/js/main.js')
   },
@@ -31,7 +16,6 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js'
-    // publicPath: '/'
   },
   module: {
     rules: [
@@ -65,17 +49,14 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css'
-    }),
-    new NunjucksWebpackPlugin({
-      templates: [
-        {
-          from: path.resolve(__dirname, 'src/templates/index.njk'),
-          to: 'index.html',
-          context: ctx
-        }
-      ],
-      configure: env
     })
   ],
   devtool: prod ? false : 'inline-cheap-source-map'
 };
+
+webpackConfig = merge(
+  webpackConfig,
+  require('./config/nunjucks/webpack.config')
+);
+
+module.exports = webpackConfig;
