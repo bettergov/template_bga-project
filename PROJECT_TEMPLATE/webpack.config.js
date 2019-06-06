@@ -10,26 +10,16 @@ let webpackConfig = {
     bundle: path.resolve(__dirname, 'src/js/main.js')
   },
   resolve: {
-    // extensions: ['*', '.mjs', '.js', '.svelte']
-    extensions: ['*', '.js']
+    extensions: ['*', '.mjs', '.js', '.svelte']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[hash].js'
+    // filename: '[name].[hash].js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     rules: [
-      // {
-      //   test: /\.svelte$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'svelte-loader',
-      //     options: {
-      //       emitCss: true,
-      //       hotReload: true
-      //     }
-      //   }
-      // },
       {
         test: /\.s?css$/,
         use: [
@@ -48,7 +38,8 @@ let webpackConfig = {
   mode,
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css'
+      // filename: '[name].[hash].css'
+      filename: '[name].css'
     })
   ],
   devtool: prod ? false : 'inline-cheap-source-map'
@@ -69,7 +60,8 @@ prodConfig = {
 
 webpackConfig = merge(
   webpackConfig,
-  require('./config')[('nunjucks', 'svelte')],
+  require('./config')['nunjucks'],
+  require('./config')['svelte'],
   prod ? prodConfig : {}
 );
 
