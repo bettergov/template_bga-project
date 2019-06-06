@@ -11,7 +11,7 @@
   {% include "meta/_social.njk" %}
 
   {% if ENV == 'production' %}
-  <link rel='stylesheet' href='bundle.css'>
+  <link rel='stylesheet' href='bundle.{{__webpack__.hash}}.css'>
   {% endif %}
 
   <link rel="stylesheet" type="text/css" href="https://media.bettergov.org/bga-fontello-icons/css/bga-icons.css">
@@ -44,6 +44,6 @@
 
 
 {% block js %}
-<script src="bundle.js"></script>
+<script src="bundle.{{__webpack__.hash}}.js"></script>
 {# <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script> #}
 {% endblock %}

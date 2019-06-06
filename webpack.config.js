@@ -14,8 +14,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].js',
-    chunkFilename: '[name].[id].js'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -48,15 +47,29 @@ let webpackConfig = {
   mode,
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].[hash].css'
     })
   ],
   devtool: prod ? false : 'inline-cheap-source-map'
 };
 
+// prod options
+
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+prodConfig = {
+  optimization: {
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()]
+  }
+};
+
+// final config
+
 webpackConfig = merge(
   webpackConfig,
-  require('./config/nunjucks/webpack.config')
+  require('./config/nunjucks/webpack.config'),
+  prod ? prodConfig : {}
 );
 
 module.exports = webpackConfig;
