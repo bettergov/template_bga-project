@@ -1,0 +1,198 @@
+{% macro jpg(name, alt='Image') %}
+<img src="images/{{ name }}-1800.jpg" srcset="images/{{ name }}-400.jpg 400w, images/{{ name }}-800.jpg 800w, images/{{ name }}-1200.jpg 1200w, images/{{ name }}-1800.jpg 1800w" alt="{{ alt }}" />
+{% endmacro %}
+
+{# This is partially cribbed from AJAM's tarbell-big-read-template https://github.com/ajam/tarbell-big-read-template #}
+
+{% macro build_content(content, assets=[]) %}
+
+{% for row in content %}
+  {% set rowloop = loop %}
+  {% if row.type  == "text" %}
+    {{ build_text(row.value) }}
+  {% elif row.type  == "subhed" %}
+    {{ build_subhed(row.value) }}
+  {% elif row.type == "art" and row.value|type == 'string' %}
+    {{ build_art( getArtFromData(row.value, assets) ) }}
+  {% elif row.type  == "art" %}
+    {{ build_art(row.value) }}
+  {% elif row.type == "pullquote" %}
+    {{ build_pullquote(row.value) }}
+  {% elif row.type == "blockquote" %}
+    {{ build_blockquote(row.value) }}
+  {% elif row.type == "card" %}
+    {{ build_card(row.value) }}
+  {% elif row.type == "link" %}
+    {{ build_link(row.value) }}
+  {% elif row.type == "link-large" %}
+    {{ build_link_large(row.value) }}
+  {% elif row.type == "button" %}
+    {{ build_button(row.value) }}
+  {% elif row.type == "sidebar" %}
+    {{ build_sidebar(row.value) }}
+  {% elif row.type  == "markup" %}
+      {{ build_markup(row.value) }}
+  {% endif %}
+{% endfor %}
+
+{% endmacro %}
+
+
+{% macro build_text(paragraph) %}
+<p>{{ paragraph | safe}}</p>
+{% endmacro %}
+
+
+{% macro build_subhed(subhed) %}
+<h3 class="subhed">{{ subhed }}</h3>
+{% endmacro %}
+
+
+{% macro build_art(art) %}
+{% if art %}
+<figure id="{{art.slug}}" class="{{ getArtClasses(art) }}">
+
+  {% if art.type == "pym" %}
+    <div data-pym-src="{{art.source}}"></div>
+  {% elif art.type == "photo" %}
+    {{ jpg(art.source, alt=art.caption) }}
+  {% elif art.type == "photo-set" %}
+    <div class="images">
+    {% for photo in art.photos %}
+    {{ jpg(photo.source) }}
+    {% endfor %}
+    </div>
+  {% elif art.type == "doc" %}
+    <a href={{ art.url | striptags }} class="doc__link">
+      <img src="{{ art.source | striptags }}" class="doc__img">
+    </a>
+  {% elif art.type == "markup" %}
+    {{ art.code | safe }}
+  {% endif %}
+
+  {% if art.caption or art.cutline %}
+    <figcaption class="caption">
+
+      {% if art.caption %}
+      <span class="caption-text">{{ art.caption | safe }}</span>
+      {% endif %}
+
+      {% if art.cutline %}
+      <span class="cutline">{{ art.cutline | safe }}</span>
+      {% endif %}
+
+    </figcaption>
+  {% endif %}
+
+</figure>
+{% endif %}
+{% endmacro %}
+
+
+{% macro build_pullquote(quote) %}
+<aside class="pullquote">
+  <div class="quote">
+  {{ quote.quote }}
+  </div>
+
+  {% if quote.speaker %}
+    <div class="quote__speaker">
+    {{ quote.speaker }}
+    </div>
+  {% endif %}
+
+  {% if quote.role %}
+    <div class="quote__role">
+    {{ quote.role }}
+    </div>
+  {% endif %}
+</aside>
+{% endmacro %}
+
+
+{% macro build_blockquote(quote) %}
+<blockquote>
+  {{ quote.quote }}
+</blockquote>
+{% endmacro %}
+
+
+{% macro build_card(card) %}
+<div class="card">
+  {% if card.subtitle %}
+  <h4 class="card__subtitle">{{ card.subtitle }}</h4>
+  {% endif %}
+
+  {% if card.title %}
+  <h3 class="card__title">{{ card.title }}</h3>
+  {% endif %}
+
+  {% if card.content %}
+  {{ build_content(card.content) }}
+  {% endif %}
+</div>
+{% endmacro %}
+
+
+{% macro build_link(link) %}
+<div class="link"><a href="{{ link | attribute('href') }}"><span class="link__text">{{ link | striptags }}</span></a></div>
+{% endmacro %}
+
+
+{% macro build_link_large(link) %}
+<div class="link link--large"><a href="{{ link | attribute('href') }}"><span class="link__text">{{ link | striptags }}</span></a></div>
+{% endmacro %}
+
+
+{% macro build_button(link) %}
+<a class="button" href="{{ link | attribute('href') }}">{{ link | striptags }}</a>
+{% endmacro %}
+
+
+{% macro build_sidebar(sidebar) %}
+<aside class="sidebar">
+  {{ build_content(sidebar.show) }}
+  <div class="more">
+  {{ build_content(sidebar.more) }}
+  </div>
+  <button class="expand">Read more <i class="icon--down-caret"></i></button>
+</aside>
+{% endmacro %}
+
+
+{% macro build_markup(markup) %}
+    {% set regExp = r/.+\/_.+\.html$/ %}
+    {% if regExp.test(markup) %} {# if markup references a .html file, then pull markup from there #}
+        {% include markup ignore missing %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro build_author(bylines) %}
+    {% for author in bylines|filter('role', 'author') %}
+    <div class="author meta">
+        <a href="{{ author.url }}">
+            <img src="{{ author.author_image_url }}">
+            <div class="name">{{ author.name }}</div>
+        </a>
+        <div class="bio">{{ author.author_bio }}</div>
+        <ul class="contact-links">
+            <li class="contact">
+                <a href="mailto:{{ author.author_email }}">
+                    {{ author.author_email }}
+                </a>
+            </li>
+            <li class="contact">
+                <a href="//twitter.com/{{ author.author_twitter.replace('@', '') }}">
+                    {{ author.author_twitter }}
+                </a>
+            </li>
+            <li class="contact">
+                <a href="tel:+1{{ author.author_phone.replace('-', '')}}">
+                    {{ author.author_phone }}
+                </a>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+{% endmacro %}

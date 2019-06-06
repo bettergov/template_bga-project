@@ -1,0 +1,47 @@
+{% from "_macros.njk" import jpg %}
+
+<section class="intro">
+
+  <header class="header--top header--center header--drop-mobile">
+
+    <figure class="lede-image">
+      {# {{ jpg(ARCHIE.top.hero.source) }} #}
+      <img src="https://via.placeholder.com/800x450" />
+      
+      <figcaption class="caption">
+        {# <span class="cutline">{{ ARCHIE.top.hero.cutline }}</span> #}
+        <span class="cutline">Sample photographer | DNE</span>
+      </figcaption>
+    </figure>
+    
+    <div class="lede-copy">
+      <h1 class="hed">
+        {# {{ARCHIE.top.headline}} #}
+        Emanuel Decries Police Code of Silence. But City-Paid Expert Says It Doesn't Exist.
+      </h1>
+      <summary class="dek">
+        {# {{ARCHIE.top.deck}} #}
+        An expert witness hired by the Emanuel administration has disputed in several lawsuits the existence of a code of silence among Chicago police to thwart misconduct allegations. The mayor claimed the opposite in the wake of the Laquan McDonald shooting.
+      </summary>
+      <div class="bylines">
+        {# By {{ ARCHIE.top.byline | safe }} #}
+        By <a href="https://bettergov.org/team/">Watson the Watchdog</a>
+      </div>
+    </div>
+  
+  </header>
+
+  <hr>
+  
+  <div class="info">
+    <p>
+      <span class="timestamp">
+        <time datetime="{{ARCHIE.top.timestamp}}">{{ARCHIE.top.date}}</time>
+      </span>
+    </p>
+
+    <p>
+      {{ARCHIE.top.partner_language | safe}}
+    </p>
+  </div>
+</section>
