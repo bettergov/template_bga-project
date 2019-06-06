@@ -8,29 +8,31 @@
 
 {% for row in content %}
   {% set rowloop = loop %}
-  {% if row.type  == "text" %}
+  {% set rowType = row.type | lower %}
+
+  {% if rowType  == "text" %}
     {{ build_text(row.value) }}
-  {% elif row.type  == "subhed" %}
+  {% elif rowType  == "subhed" %}
     {{ build_subhed(row.value) }}
-  {% elif row.type == "art" and row.value|type == 'string' %}
+  {% elif rowType == "art" and row.value|type == 'string' %}
     {{ build_art( getArtFromData(row.value, assets) ) }}
-  {% elif row.type  == "art" %}
+  {% elif rowType  == "art" %}
     {{ build_art(row.value) }}
-  {% elif row.type == "pullquote" %}
+  {% elif rowType == "pullquote" %}
     {{ build_pullquote(row.value) }}
-  {% elif row.type == "blockquote" %}
+  {% elif rowType == "blockquote" %}
     {{ build_blockquote(row.value) }}
-  {% elif row.type == "card" %}
+  {% elif rowType == "card" %}
     {{ build_card(row.value) }}
-  {% elif row.type == "link" %}
+  {% elif rowType == "link" %}
     {{ build_link(row.value) }}
-  {% elif row.type == "link-large" %}
+  {% elif rowType == "link-large" %}
     {{ build_link_large(row.value) }}
-  {% elif row.type == "button" %}
+  {% elif rowType == "button" %}
     {{ build_button(row.value) }}
-  {% elif row.type == "sidebar" %}
+  {% elif rowType == "sidebar" %}
     {{ build_sidebar(row.value) }}
-  {% elif row.type  == "markup" %}
+  {% elif rowType  == "markup" %}
       {{ build_markup(row.value) }}
   {% endif %}
 {% endfor %}
@@ -55,7 +57,13 @@
   {% if art.type == "pym" %}
     <div data-pym-src="{{art.source}}"></div>
   {% elif art.type == "photo" %}
-    {{ jpg(art.source, alt=art.caption) }}
+    {% set regExp = r/^https?:\/\/.+$/ %}
+    
+    {% if regExp.test(art.source) %}
+      <img src="{{ art.source }}" alt="{{ art.caption }}" />
+    {% else %}
+      {{ jpg(art.source, alt=art.caption) }}
+    {% endif %}
   {% elif art.type == "photo-set" %}
     <div class="images">
     {% for photo in art.photos %}
@@ -161,9 +169,11 @@
 
 
 {% macro build_markup(markup) %}
-    {% set regExp = r/.+\/_.+\.html$/ %}
-    {% if regExp.test(markup) %} {# if markup references a .html file, then pull markup from there #}
+    {% set regExp = r/.+\/_.+\.(html|njk)$/ %}
+    {% if regExp.test(markup) %} {# if markup references a .html or .njk file, then pull markup from there #}
         {% include markup ignore missing %}
+    {% else %}
+        {{ markup | safe }}
     {% endif %}
 {% endmacro %}
 
