@@ -14,8 +14,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    // filename: '[name].[hash].js'
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
   module: {
@@ -38,8 +37,7 @@ let webpackConfig = {
   mode,
   plugins: [
     new MiniCssExtractPlugin({
-      // filename: '[name].[hash].css'
-      filename: '[name].css'
+      filename: '[name].[hash].css'
     })
   ],
   devtool: prod ? false : 'inline-cheap-source-map'
