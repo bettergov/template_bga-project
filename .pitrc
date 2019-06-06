@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
   name: 'BGA Project',
   renderer: 'ejs',
@@ -39,13 +41,14 @@ module.exports = {
     }
   ],
   statics: {
-    projectSlug: require('path').basename(__dirname),
+    absPath: __dirname,
+    projectSlug: path.basename(__dirname),
     year: new Date().getFullYear()
   },
-  ignore: ['.gitignore', 'README.md', 'example'],
+  ignore: ['.gitignore', 'README.md', 'example', 'example-context.json'],
   justCopy: [],
   rename: {
-    PROJECT_TEMPLATE: '',
+    PROJECT_TEMPLATE: './',
     '.gitignore_template': '.gitignore',
     'README_template.md': 'README.md'
   }
