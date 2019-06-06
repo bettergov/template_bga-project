@@ -5,6 +5,7 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@newswire/doc-to-archieml": "^1.0.0",
+    "@newswire/sheet-to-data": "^1.0.0",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.0.6",
     "bga-style": "git+https://github.com/bettergov/bga-style.git",
@@ -36,9 +37,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base public'"
-  },
-  "dependencies": {
-    "@newswire/sheet-to-data": "^1.0.0"
+    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base public'",
+    "preview": "yarn build && http-server public"
   }
 }

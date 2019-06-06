@@ -5,8 +5,7 @@ const nunjucksContext = require('./context');
 const NunjucksWebpackPlugin = require('nunjucks-webpack-plugin');
 
 const env = nunjucks.configure('./src/templates/', {
-  autoescape: true,
-  watch: true
+  autoescape: true
 });
 env.addFilter('markdown', nunjucksSettings.markdownFilter);
 env.addGlobal('getArtClasses', nunjucksSettings.getArtClasses);
