@@ -10,7 +10,8 @@ let webpackConfig = {
     bundle: path.resolve(__dirname, 'src/js/main.js')
   },
   resolve: {
-    extensions: ['*', '.mjs', '.js', '.svelte']
+    // extensions: ['*', '.mjs', '.js', '.svelte']
+    extensions: ['*', '.js']
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -18,17 +19,17 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      {
-        test: /\.svelte$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'svelte-loader',
-          options: {
-            emitCss: true,
-            hotReload: true
-          }
-        }
-      },
+      // {
+      //   test: /\.svelte$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'svelte-loader',
+      //     options: {
+      //       emitCss: true,
+      //       hotReload: true
+      //     }
+      //   }
+      // },
       {
         test: /\.s?css$/,
         use: [
@@ -68,7 +69,7 @@ prodConfig = {
 
 webpackConfig = merge(
   webpackConfig,
-  require('./config/nunjucks/webpack.config'),
+  require('./config')[('nunjucks', 'svelte')],
   prod ? prodConfig : {}
 );
 
