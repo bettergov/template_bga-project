@@ -1,64 +1,40 @@
-# svelte app
+# <%=projectSlug%>
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
+- [About](#about)
+- [Dependencies](#dependencies)
+- [Getting started](#getting-started)
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+## About
+
+| Title       | <%=projectTitle%>                                                                                                                   |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                               |
+| Link        | [https://projects.bettergov.org/<%=projectUrlPath%>/](https://projects.bettergov.org/<%=projectUrlPath%>/)                          |
+| Archie doc  | <%if (usingGoogleDoc) {%>[<%=googleDocId%>](https://docs.google.com/document/d/<%=googleDocId%>/edit)<%} else {%>n/a<%}%>           |
+| Spreadsheet | <%if (usingGoogleSheet) {%>[<%=googleSheetId%>](https://docs.google.com/spreadsheets/d/<%=googleSheetId%>/edit)<%} else {%>n/a<%}%> |
+
+© Better Government Association <%=year%>
+
+## Dependencies
+
+Make sure you have the latest version of [node](https://docs.npmjs.com/getting-started/installing-node) installed on your machine as well as the [yarn](https://yarnpkg.com/en/docs/install#mac-stable) package manager.
+
+# Getting started
+
+1.  Clone this project and `cd` into the directory.
 
 ```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
+$ git clone https://github.com/bettergov/<%=projectSlug%>.git && cd <%=projectSlug%>
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
+2.  Install dependencies.
 
 ```bash
-cd svelte-app
-npm install
+$ yarn
 ```
 
-...then start webpack:
+3.  Finally, run the project.
 
 ```bash
-npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
+$ yarn dev
 ```

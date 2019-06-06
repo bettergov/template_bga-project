@@ -1,0 +1,50 @@
+module.exports = {
+  name: 'bga-project-template',
+  renderer: 'ejs',
+  category: null,
+  prompts: [
+    {
+      type: 'input',
+      name: 'projectTitle',
+      message: 'Project title: '
+    },
+    {
+      type: 'input',
+      name: 'projectUrlPath',
+      message: 'URL path (e.g. 2018/recycling-chicago): '
+    },
+    {
+      type: 'confirm',
+      name: 'usingGoogleDoc',
+      default: false,
+      message: 'Are you using a Google Doc?'
+    },
+    {
+      type: 'input',
+      name: 'googleDocId',
+      message: 'Google Doc ID: ',
+      when: answers => answers.usingGoogleDoc
+    },
+    {
+      type: 'confirm',
+      name: 'usingGoogleSheet',
+      default: false,
+      message: 'Are you using a Google Sheet?'
+    },
+    {
+      type: 'input',
+      name: 'googleSheetId',
+      message: 'Google Sheet ID: ',
+      when: answers => answers.usingGoogleSheet
+    }
+  ],
+  statics: {
+    projectSlug: require('path').basename(__dirname),
+    year: new Date().getFullYear()
+  },
+  ignore: ['node_modules', '.gitignore'],
+  justCopy: [],
+  rename: {
+    '.pit.gitignore': '.gitignore'
+  }
+};
