@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'bga-project-template',
+  name: 'BGA Project',
   renderer: 'ejs',
   category: null,
   prompts: [
@@ -42,9 +42,11 @@ module.exports = {
     projectSlug: require('path').basename(__dirname),
     year: new Date().getFullYear()
   },
-  ignore: ['node_modules', '.gitignore'],
+  ignore: ['.gitignore', 'README.md', 'example'],
   justCopy: [],
   rename: {
-    '.pit.gitignore': '.gitignore'
+    PROJECT_TEMPLATE: '',
+    '.gitignore_template': '.gitignore',
+    'README_template.md': 'README.md'
   }
 };

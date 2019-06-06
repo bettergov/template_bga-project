@@ -1,40 +1,27 @@
-# <%=projectSlug%>
+# BGA Project template
 
-- [About](#about)
-- [Dependencies](#dependencies)
-- [Getting started](#getting-started)
+This is an example template to show off some of the functionality of [@politico/interactive-templates](https://github.com/The-Politico/politico-interactive-templates) (or PIT).
 
-## About
+# Quick start
 
-| Title       | <%=projectTitle%>                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                               |
-| Link        | [https://projects.bettergov.org/<%=projectUrlPath%>/](https://projects.bettergov.org/<%=projectUrlPath%>/)                          |
-| Archie doc  | <%if (usingGoogleDoc) {%>[<%=googleDocId%>](https://docs.google.com/document/d/<%=googleDocId%>/edit)<%} else {%>n/a<%}%>           |
-| Spreadsheet | <%if (usingGoogleSheet) {%>[<%=googleSheetId%>](https://docs.google.com/spreadsheets/d/<%=googleSheetId%>/edit)<%} else {%>n/a<%}%> |
+1. Install PIT:
 
-© Better Government Association <%=year%>
-
-## Dependencies
-
-Make sure you have the latest version of [node](https://docs.npmjs.com/getting-started/installing-node) installed on your machine as well as the [yarn](https://yarnpkg.com/en/docs/install#mac-stable) package manager.
-
-# Getting started
-
-1.  Clone this project and `cd` into the directory.
-
-```bash
-$ git clone https://github.com/bettergov/<%=projectSlug%>.git && cd <%=projectSlug%>
+```
+$ npm install -g @politico/interactive-templates
 ```
 
-2.  Install dependencies.
+2. Register this template:
 
-```bash
-$ yarn
+```
+$ pit register https://github.com/bettergov/template_bga-project
 ```
 
-3.  Finally, run the project.
+3. Make a new instance:
 
-```bash
-$ yarn dev
 ```
+$ mkdir pit-project
+$ cd pit-project
+$ pit new
+```
+
+4. Choose `BGA Project` as the template and answer the prompts.
