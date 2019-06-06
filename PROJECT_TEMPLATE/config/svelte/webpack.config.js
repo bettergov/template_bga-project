@@ -1,7 +1,4 @@
 module.exports = {
-  resolve: {
-    extensions: ['.mjs', '.js', '.svelte']
-  },
   module: {
     rules: [
       {
