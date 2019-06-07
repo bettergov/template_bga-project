@@ -75,7 +75,13 @@ module.exports = {
    * These ignore rules assume the templates are initially built in .tmp.pit
    * (https://github.com/The-Politico/politico-interactive-templates/blob/2b61e270be41e725bdc7a297bcbcd49799bfaad9/src/scripts/new/index.js)
    */
-  ignore: ['node_modules', '.tmp.pit/*', '!@PROJECT_TEMPLATE'],
+  ignore: [
+    'node_modules',
+    '/*',
+    '!.tmp.pit',
+    '.tmp.pit/*',
+    '!@PROJECT_TEMPLATE'
+  ],
   justCopy: [],
   rename: {
     '@PROJECT_TEMPLATE': './'
