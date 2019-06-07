@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-public/bundle.*
-package-lock.json
-yarn.lock
+public
 .env
+.awspublish-*
+yarn-error.log

@@ -1,4 +1,4 @@
-# pit-project
+# test-project
 
 - [About](#about)
 - [Dependencies](#dependencies)
@@ -24,7 +24,7 @@ Make sure you have the latest version of [node](https://docs.npmjs.com/getting-s
 1.  Clone this project and `cd` into the directory.
 
 ```bash
-$ git clone https://github.com/bettergov/pit-project.git && cd pit-project
+$ git clone https://github.com/bettergov/test-project.git && cd test-project
 ```
 
 2.  Install dependencies.
