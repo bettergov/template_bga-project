@@ -58,15 +58,24 @@ let webpackConfig = {
 
 // prod options
 
+const glob = require('glob');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+};
 
 prodConfig = {
   optimization: {
     minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()]
-  }
-  // plugins: [new BundleAnalyzerPlugin()]
+  },
+  plugins: [
+    new PurgeCssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+    })
+  ]
 };
 
 // final config
