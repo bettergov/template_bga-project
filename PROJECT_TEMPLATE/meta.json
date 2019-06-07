@@ -1,0 +1,5 @@
+{
+  "publishPath": "<%=projectUrlPath%>/",
+  "url": "https://projects.bettergov.org/<%=projectUrlPath%>/",
+  "stagingUrl": "http://stage-projects.bettergov.org/<%=projectUrlPath%>/"
+}

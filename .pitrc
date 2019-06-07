@@ -73,7 +73,13 @@ module.exports = {
     absPath: __dirname,
     year
   },
-  ignore: ['.gitignore', 'README.md', 'example', 'example-context.json'],
+  ignore: [
+    '.gitignore',
+    'README.md',
+    'example',
+    'example-context.json',
+    'node_modules'
+  ],
   justCopy: [],
   rename: {
     PROJECT_TEMPLATE: './',
