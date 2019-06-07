@@ -62,6 +62,8 @@ const glob = require('glob');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, 'src')
@@ -74,7 +76,9 @@ prodConfig = {
   plugins: [
     new PurgeCssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
-    })
+    }),
+    new CopyPlugin([{ from: 'src/static', to: '' }]),
+    new CleanWebpackPlugin()
   ]
 };
 
