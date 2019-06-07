@@ -1,0 +1,21 @@
+{
+  "name": "template_bga-project",
+  "version": "1.0.0",
+  "description": "This is a BGA project template built with [@politico/interactive-templates](https://github.com/The-Politico/politico-interactive-templates) (or PIT).",
+  "scripts": {
+    "test": "rm -rf .tmp.pit && pit test example-context.json -c false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bettergov/template_bga-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bettergov/template_bga-project/issues"
+  },
+  "homepage": "https://github.com/bettergov/template_bga-project#readme",
+  "peerDependencies": {
+    "@politico/interactive-templates": "^0.0.13"
+  }
+}
