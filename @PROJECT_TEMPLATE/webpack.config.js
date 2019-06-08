@@ -63,6 +63,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const PATHS = {
@@ -78,6 +79,10 @@ prodConfig = {
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     }),
     new CopyPlugin([{ from: 'src/static', to: '' }]),
+    new PrerenderSPAPlugin({
+      staticDir: path.join(__dirname, 'public'),
+      routes: ['/']
+    }),
     new CleanWebpackPlugin()
   ]
 };

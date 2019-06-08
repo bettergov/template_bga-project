@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "<%=projectSlug%>",
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -36,6 +36,7 @@
     "open": "^6.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
+    "prerender-spa-plugin": "^3.4.0",
     "purgecss-webpack-plugin": "^1.5.0",
     "sass-loader": "^7.1.0",
     "serve": "^11.0.0",

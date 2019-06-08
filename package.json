@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a BGA project template built with [@politico/interactive-templates](https://github.com/The-Politico/politico-interactive-templates) (or PIT).",
   "scripts": {
-    "test": "rm -rf .tmp.pit && pit test example-context.json -c false"
+    "test": "rm -rf example && pit test example-context.json . example -c false"
   },
   "repository": {
     "type": "git",
