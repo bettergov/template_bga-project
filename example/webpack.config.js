@@ -76,7 +76,8 @@ prodConfig = {
   },
   plugins: [
     new PurgeCssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      whitelistPatterns: [/^svelte-/]
     }),
     new CopyPlugin([{ from: 'src/static', to: '' }]),
     new PrerenderSPAPlugin({
