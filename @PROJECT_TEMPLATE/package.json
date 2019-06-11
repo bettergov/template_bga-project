@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base public'",
+    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base src/static'",
     "preview": "yarn build && http-server -p 3000 public"
   }
 }
