@@ -99,7 +99,7 @@ async function main() {
         )
       );
     })
-    .pipe(prompt.confirm('Are you sure?'))
+    .pipe(gulpIf(!argv.force, prompt.confirm('Are you sure?')))
     .pipe(
       rename(pubPath => {
         // eslint-disable-next-line no-param-reassign
