@@ -51,6 +51,9 @@
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
+  "dependencies": {
+    "lazysizes": "^5.1.0"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
