@@ -1,3 +1,5 @@
+var merge = require('lodash.merge');
+
 module.exports = ({ title, description, updatedProps = {} } = {}) => {
   const pageTitle = title ? title : '<%=projectTitle%>';
   const pageDescription = description ? description : '';
