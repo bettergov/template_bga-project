@@ -40,6 +40,7 @@
     "purgecss-webpack-plugin": "^1.5.0",
     "sass-loader": "^7.1.0",
     "serve": "^11.0.0",
+    "sharp": "^0.22.1",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
     "svelte-loader": "2.13.3",
@@ -52,7 +53,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base src/static'",
+    "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
     "preview": "yarn build && http-server -p 3000 public"
   }
 }
