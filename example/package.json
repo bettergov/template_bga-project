@@ -1,5 +1,5 @@
 {
-  "name": "lightfoot-agenda",
+  "name": "test-project",
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -15,6 +15,7 @@
     "css-loader": "^2.1.1",
     "dotenv": "^8.0.0",
     "dummyjs": "^1.1.7",
+    "file-loader": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.0.0",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
@@ -55,15 +56,12 @@
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
+  "dependencies": {
+    "lazysizes": "^5.1.0"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
     "preview": "yarn build && http-server -p 3000 public"
-  },
-  "dependencies": {
-    "bulma": "^0.7.5",
-    "lazysizes": "^5.1.0",
-    "lodash.groupby": "^4.6.0",
-    "moment": "^2.24.0"
   }
 }
