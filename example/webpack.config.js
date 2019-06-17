@@ -40,8 +40,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[hash].js',
-    publicPath: '/'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
