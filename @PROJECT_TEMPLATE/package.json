@@ -63,6 +63,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
-    "preview": "yarn build && http-server -p 3000 public -o"
+    "preview": "yarn build && http-server -p 3000 public -o",
+    "full-deploy": "gulp archie && yarn build && gulp aws --force",
+    "full-deploy:prod": "gulp archie && yarn build && gulp aws --force --production"
   }
 }
