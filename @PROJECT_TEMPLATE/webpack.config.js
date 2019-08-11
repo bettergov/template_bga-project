@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -80,18 +81,23 @@ let webpackConfig = {
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css'
     }),
-    new CopyPlugin([
-      {
-        from: 'src/static',
-        to: ''
-      },
-      ...responsiveImages([400, 800, 1200, 1800])
-    ]),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // ignore moment locales
   ],
   devtool: prod ? false : 'inline-cheap-source-map',
   stats: 'minimal'
 };
+
+if (fs.existsSync('src/static/images')) {
+  webpackConfig = merge(webpackConfig, {
+    plugins: new CopyPlugin([
+      {
+        from: 'src/static',
+        to: ''
+      },
+      ...responsiveImages([400, 800, 1200, 1800])
+    ])
+  });
+}
 
 // prod options
 
