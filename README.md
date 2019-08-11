@@ -7,7 +7,7 @@ This is an example template to show off some of the functionality of [@politico/
 1. Install PIT:
 
 ```
-$ npm install -g @politico/interactive-templates
+$ npm install -g @politico/interactive-templates @politico/interactive-bin
 ```
 
 2. Register this template:
