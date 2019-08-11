@@ -20,6 +20,7 @@ const year = new Date().getFullYear();
 
 module.exports = {
   name: 'BGA Project',
+  version: '1.x',
   renderer: 'ejs',
   category: null,
   prompts: [
