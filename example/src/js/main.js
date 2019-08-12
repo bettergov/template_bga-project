@@ -9,7 +9,7 @@ import 'lazysizes/plugins/blur-up/ls.blur-up';
 import App from './App.svelte';
 
 const app = new App({
-  target: document.querySelector('article.main'),
+  target: document.querySelector(`[role='main']`),
   anchor: document.querySelector('section.story'),
   props: {
     name: 'world'

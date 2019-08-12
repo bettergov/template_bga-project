@@ -46,7 +46,7 @@
 
 
 {% macro build_subhed(subhed) %}
-<h3 class="subhed">{{ subhed }}</h3>
+<h2 class="subhed">{{ subhed }}</h2>
 {% endmacro %}
 
 
@@ -65,14 +65,12 @@
       {{ jpg(art.source, alt=art.caption) }}
     {% endif %}
   {% elif art.type == "photo-set" %}
-    <div class="images">
     {% for photo in art.photos %}
     {{ jpg(photo.source) }}
     {% endfor %}
-    </div>
   {% elif art.type == "doc" %}
-    <a href={{ art.url | striptags }} class="doc__link">
-      <img src="{{ art.source | striptags }}" class="doc__img">
+    <a href={{ art.url | striptags }} class="doc-link">
+      <img src="{{ art.source | striptags }}" class="doc-img">
     </a>
   {% elif art.type == "markup" %}
     {{ art.code | safe }}
@@ -82,7 +80,7 @@
     <figcaption class="caption">
 
       {% if art.caption %}
-      <span class="caption-text">{{ art.caption | safe }}</span>
+      {{ art.caption | safe }}
       {% endif %}
 
       {% if art.cutline %}
@@ -103,17 +101,19 @@
   {{ quote.quote }}
   </div>
 
+  <footer>
   {% if quote.speaker %}
-    <div class="quote__speaker">
+    <div class="quote-speaker">
     {{ quote.speaker }}
     </div>
   {% endif %}
 
   {% if quote.role %}
-    <div class="quote__role">
+    <div class="quote-role">
     {{ quote.role }}
     </div>
   {% endif %}
+  </footer>
 </aside>
 {% endmacro %}
 
@@ -128,11 +128,11 @@
 {% macro build_card(card) %}
 <div class="card">
   {% if card.subtitle %}
-  <h4 class="card__subtitle">{{ card.subtitle }}</h4>
+  <p class="card-subtitle">{{ card.subtitle }}</p>
   {% endif %}
 
   {% if card.title %}
-  <h3 class="card__title">{{ card.title }}</h3>
+  <p class="card-title">{{ card.title }}</p>
   {% endif %}
 
   {% if card.content %}
@@ -143,12 +143,12 @@
 
 
 {% macro build_link(link) %}
-<div class="link"><a href="{{ link | attribute('href') }}"><span class="link__text">{{ link | striptags }}</span></a></div>
+<div class="link"><a href="{{ link | attribute('href') }}"><span class="link-text">{{ link | striptags }}</span></a></div>
 {% endmacro %}
 
 
 {% macro build_link_large(link) %}
-<div class="link link--large"><a href="{{ link | attribute('href') }}"><span class="link__text">{{ link | striptags }}</span></a></div>
+<div class="link link-large"><a href="{{ link | attribute('href') }}"><span class="link-text">{{ link | striptags }}</span></a></div>
 {% endmacro %}
 
 
