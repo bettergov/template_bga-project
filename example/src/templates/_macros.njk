@@ -30,8 +30,6 @@
     {{ build_link_large(row.value) }}
   {% elif rowType == "button" %}
     {{ build_button(row.value) }}
-  {% elif rowType == "sidebar" %}
-    {{ build_sidebar(row.value) }}
   {% elif rowType  == "markup" %}
       {{ build_markup(row.value) }}
   {% endif %}
@@ -64,10 +62,6 @@
     {% else %}
       {{ jpg(art.source, alt=art.caption) }}
     {% endif %}
-  {% elif art.type == "photo-set" %}
-    {% for photo in art.photos %}
-    {{ jpg(photo.source) }}
-    {% endfor %}
   {% elif art.type == "doc" %}
     <a href={{ art.url | striptags }} class="doc-link">
       <img src="{{ art.source | striptags }}" class="doc-img">
@@ -154,17 +148,6 @@
 
 {% macro build_button(link) %}
 <a class="button" href="{{ link | attribute('href') }}">{{ link | striptags }}</a>
-{% endmacro %}
-
-
-{% macro build_sidebar(sidebar) %}
-<aside class="sidebar">
-  {{ build_content(sidebar.show) }}
-  <div class="more">
-  {{ build_content(sidebar.more) }}
-  </div>
-  <button class="expand">Read more <i class="icon--down-caret"></i></button>
-</aside>
 {% endmacro %}
 
 
