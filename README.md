@@ -1,6 +1,8 @@
 # BGA Project template
 
-This is an example template to show off some of the functionality of [@politico/interactive-templates](https://github.com/The-Politico/politico-interactive-templates) (or PIT).
+This is a template for off-platform pages using [@politico/interactive-templates](https://github.com/The-Politico/politico-interactive-templates) (or PIT).
+
+FYI, as it stands now, I've had middling results with this — a lot of configuration, a lengthy build process. Working with prefab frameworks like Gatsby would probably work better... YMMV.
 
 # Quick start
 
